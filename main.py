@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtCore import QSize
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget
 
 # Have QMainWindow be subclass to customize the window
 class PomodoroWindow(QMainWindow):
@@ -10,20 +10,27 @@ class PomodoroWindow(QMainWindow):
         self.setWindowTitle("🍅Your Pomodoro Timer! 🍅")
         #Establish starting click amount
         self.clicks = 0
-        self.button = QPushButton("Pomodoro Time 🍅", self)
-        self.button.setFixedSize(180, 120)
-        self.button.clicked.connect(self.pomodoro_button_clicked)
+        self.pomodoro_button = QPushButton("Pomodoro Time 🍅", self)
+        self.pomodoro_button.clicked.connect(self.pomodoro_button_clicked)
+
+        self.short_break_button = QPushButton("Short Break 😪", self)
 
     
         self.setMinimumSize(QSize(400, 200))
         self.setMaximumSize(QSize(900, 600))
-        layout = QVBoxLayout()
-        layout.addWidget(self.button)
+        layout = QHBoxLayout()
+        layout.addWidget(self.pomodoro_button)
+        layout.addWidget(self.short_break_button)
+
+        # Dummy widget to use CentralWidget and setLayout
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.setCentralWidget(widget)
 
     #Connect to parent and count each click of button
     def pomodoro_button_clicked(self):
         self.clicks += 1
-        self.button.setText(f"Pomodoros Clicked 🍅: {self.clicks}")
+        self.pomodoro_button.setText(f"Pomodoros Clicked 🍅: {self.clicks}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
