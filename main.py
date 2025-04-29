@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+import time
 
 class Pomodoro:
     def __init__(self, root):
@@ -15,12 +16,32 @@ class Pomodoro:
         root.maxsize(400, 200)
         
         #Establish primary buttons
-        ttk.Button(mainframe, text="Pomodoro").grid(column=1, row=1, sticky=(N, W))
+        ttk.Button(mainframe, text="Pomodoro", command=self.pomodoro_start).grid(column=1, row=1, sticky=(N, W))
         ttk.Button(mainframe, text="Short break").grid(column=2, row=1, sticky=(N))
         ttk.Button(mainframe, text="Long break").grid(column=3, row=1, sticky=(S, W))
         ttk.Button(mainframe, text="Start").grid(column=1, row=3, sticky=(S, E))
         ttk.Button(mainframe, text="Reset").grid(column=3, row=3, sticky=(S, W))
+
+        #Declaration of variables
+        hour = StringVar()
+        minute = StringVar()
+        second = StringVar()
+
+        #Set default value of numbers to 0
+        hour.set("00")
+        minute.set("00")
+        second.set("00")
+
+        hour_entry = ttk.Entry(mainframe, width=4, textvariable=hour)
+        hour_entry.grid(column=1, row=2)
+        minute_entry = ttk.Entry(mainframe, width=4, textvariable=minute)
+        minute_entry.grid(column=2, row=2)
+        second_entry = ttk.Entry(mainframe, width=4, textvariable=second)
+        second_entry.grid(column=3, row=2)
         
+    def pomodoro_start(self):
+        print("Time to start!")
+    
         
         
 
