@@ -23,20 +23,32 @@ class Pomodoro:
         ttk.Button(mainframe, text="Reset").grid(column=3, row=3, sticky=(S, W))
 
         #Declaration of variables
+        hour = StringVar()
         minute = StringVar()
         second = StringVar()
 
         #Set default value of numbers to 0
+        hour.set("00")
         minute.set("00")
         second.set("00")
-
+        hour_entry = ttk.Entry(mainframe, width=6, font=(15), textvariable=minute)
+        hour_entry.grid(column=1, row=2)
         minute_entry = ttk.Entry(mainframe, width=6, font=(15), textvariable=minute)
-        minute_entry.grid(column=1, row=2,sticky=(E))
+        minute_entry.grid(column=2, row=2)
         second_entry = ttk.Entry(mainframe, width=6, font=(15), textvariable=second)
-        second_entry.grid(column=3, row=2, sticky=(W))
+        second_entry.grid(column=3, row=2)
         
     def pomodoro_start(self):
-        print("Time to start!")
+        try:
+            #Input provided by user is stored in temp
+            temp = int(self.minute.get())*60 + int(self.second.get())
+        except:
+            print("Please input the correct value")
+        while temp >-1:
+            # divmod(firstvalue = temp//60, secondvalue = temp%60)
+            mins,secs = divmod(temp,60)
+
+            # Logic to convert input entered in mins 
     
         
         
