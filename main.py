@@ -15,8 +15,7 @@ class Pomodoro:
         root.maxsize(400, 200)
         
         #Establish primary buttons
-        pom_button = ttk.Button(mainframe, text="Pomodoro").grid(column=1, row=1, sticky=(N, W))
-        pom_button.pack(pady=8)
+        ttk.Button(mainframe, text="Pomodoro").grid(column=1, row=1, sticky=(N, W))
         ttk.Button(mainframe, text="Short break").grid(column=2, row=1, sticky=(N))
         ttk.Button(mainframe, text="Long break").grid(column=3, row=1, sticky=(S, W))
         ttk.Button(mainframe, text="Start").grid(column=1, row=3, sticky=(S, E))
