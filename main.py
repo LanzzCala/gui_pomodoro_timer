@@ -17,11 +17,11 @@ class Pomodoro:
         root.maxsize(400, 200)
         
         #Establish primary buttons
-        ttk.Button(mainframe, text="Pomodoro", command=self.pomodoro_start).grid(column=1, row=1, sticky=(N, W))
-        ttk.Button(mainframe, text="Short break").grid(column=2, row=1, sticky=(N))
-        ttk.Button(mainframe, text="Long break").grid(column=3, row=1, sticky=(S, W))
-        ttk.Button(mainframe, text="Start").grid(column=1, row=3, sticky=(S, E))
-        ttk.Button(mainframe, text="Reset").grid(column=3, row=3, sticky=(S, W))
+        ttk.Button(mainframe, text="Pomodoro", command=self.pomodoro).grid(column=1, row=1, sticky=(N, W))
+        ttk.Button(mainframe, text="Short break", command=self.short_break).grid(column=2, row=1, sticky=(N))
+        ttk.Button(mainframe, text="Long break", command=self.long_break).grid(column=3, row=1, sticky=(S, W))
+        ttk.Button(mainframe, text="Start", command=self.start).grid(column=1, row=3, sticky=(S, E))
+        ttk.Button(mainframe, text="Reset", command=self.reset).grid(column=3, row=3, sticky=(S, W))
 
         #Declaration of variables
         self.hour = StringVar()
@@ -39,7 +39,7 @@ class Pomodoro:
         second_entry = ttk.Entry(mainframe, width=6, font=(15), textvariable=self.second)
         second_entry.grid(column=3, row=2)
         
-    def pomodoro_start(self):
+    def start(self):
         try:
             #Input provided by user is stored in temp
             temp = int(self.hour.get())*3600 + int(self.minute.get())*60 + int(self.second.get())
@@ -72,6 +72,20 @@ class Pomodoro:
 
             #after every one sec, value of temp will decrement
             temp -= 1
+
+    def pomodoro(self):
+        self.minute.set("25")
+
+    def short_break(self):
+        self.minute.set("05")
+
+    def long_break(self):
+        self.minute.set("15")
+
+    def reset(self):
+        self.hour.set("00")
+        self.minute.set("00")
+        self.second.set("00")
         
         
 
