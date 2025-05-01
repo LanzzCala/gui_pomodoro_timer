@@ -36,6 +36,7 @@ class Pomodoro:
         ttk.Entry(mainframe, width=6, font=(15), textvariable=self.minute).grid(column=2, row=2)
         ttk.Entry(mainframe, width=6, font=(15), textvariable=self.second).grid(column=3, row=2)
 
+    #Start button logic
     def start(self):
         if not self.running:
             try:
@@ -46,6 +47,7 @@ class Pomodoro:
             except ValueError:
                 messagebox.showerror("Invalid Input", "Please enter valid numbers for the timer.")
 
+    #Countdown button logic
     def countdown(self):
         if self.running and not self.paused:
             if self.remaining_seconds <= 0:
@@ -62,13 +64,13 @@ class Pomodoro:
 
             self.remaining_seconds -= 1
             self.root.after(1000, self.countdown)
-
+    #Pause button logic
     def pause(self):
         if self.running:
             self.paused = not self.paused
             if not self.paused:
                 self.countdown()  # Resume
-
+    #Reset button logic
     def reset(self):
         self.running = False
         self.paused = False
